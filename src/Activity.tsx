@@ -22,15 +22,26 @@ export function Activity() {
   useEffect(() => {
     const fetchData = async () => {
       let route: string = "";
+      console.log(formValues);
       Object.entries(formValues).forEach(([key, value]) => {
         if (value === "" || value === null) return;
-        if(["accessibility", "price"].includes(key)) key = "min" + key;
+        if(["accessibility", "price"].includes(key)){
+          ["min", "max"].forEach((element) => {
+            value = value as string;
+            value = JSON.parse(value);
+            key = element + key; 
+            //@ts-ignore: Object is possibly 'null'.
+            value = value[key as keyof typeof value];
+          })
+        }
         route = !route.length ? `?${key}=${value}` : route + `&${key}=${value}`;
       });
+
       
-      const response = await axios.get("http://www.boredapi.com/api/activity/"+ route);
-      const { data } = response;
-      setActivity(data);
+      console.log(route);
+      //const response = await axios.get("http://www.boredapi.com/api/activity/"+ route);
+      //const { data } = response;
+      //setActivity(data);
     };
     fetchData();
   }, [formValues]);

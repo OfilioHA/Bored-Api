@@ -23,22 +23,23 @@ export function ActivityForm() {
   ];
 
   const accessibilityValues = [
-    { value: 0.0, label: "Most accessible", variant: "success" },
-    { value: 0.25, label: "Accessible", variant: "secondary" },
-    { value: 0.5, label: "Intermediate", variant: "secondary" },
-    { value: 0.75, label: "Difficult", variant: "secondary" },
-    { value: 1.0, label: "Most Difficult", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.00, max: 0.25 }), label: "Most accessible", variant: "success" },
+    { value: JSON.stringify({ min: 0.26, max: 0.50 }), label: "Accessible", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.51, max: 0.75 }), label: "Intermediate", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.76, max: 0.90 }), label: "Difficult", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.91, max: 1.00 }), label: "Most Difficult", variant: "secondary" },
   ];
 
   const pricesValues = [
-    { value: 0.0, label: "Free", variant: "success" },
-    { value: 0.25, label: "Accessible", variant: "secondary" },
-    { value: 0.5, label: "Intermediate", variant: "secondary" },
-    { value: 0.75, label: "Expensive", variant: "secondary" },
-    { value: 1.0, label: "Very Expensive", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.00, max: 0.00 }), label: "Free", variant: "success" },
+    { value: JSON.stringify({ min: 0.01, max: 0.25 }), label: "Accessible", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.26, max: 0.50 }), label: "Intermediate", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.51, max: 0.75 }), label: "Expensive", variant: "secondary" },
+    { value: JSON.stringify({ min: 0.76, max: 1.00 }), label: "Very Expensive", variant: "secondary" },
   ];
 
   const handleInput = (event: any) => {
+    console.log(event.target.value);
     let {
       target: { name, value },
     } = event;
